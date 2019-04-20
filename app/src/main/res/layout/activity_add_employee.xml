@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <EditText android:id="@+id/NameTE" android:layout_width="200dp"
+              android:layout_height="50dp" android:hint="@string/hint_name"/>
+    <EditText android:id="@+id/AddressTE" android:layout_width="200dp" android:hint="@string/hint_address"
+              android:layout_height="50dp" android:layout_below="@+id/NameTE"/>
+    <EditText android:id="@+id/PositionTE" android:layout_below="@id/AddressTE" android:hint="@string/hint_position"
+              android:layout_width="200dp" android:layout_height="50dp"/>
+    <EditText android:id="@+id/IdTE" android:layout_below="@id/PositionTE" android:hint="@string/hint_id"
+              android:layout_width="200dp" android:layout_height="50dp"/>
+    <ImageView android:id="@+id/photo" android:layout_width="200dp" android:layout_height="200dp"
+               android:layout_marginLeft="200dp"/>
+    <Button android:id="@+id/UploadPhoto" android:layout_width="100dp"
+            android:layout_height="50dp" android:layout_below="@id/photo"
+            android:layout_marginLeft="250dp" android:drawableBottom="@drawable/ic_camera_alt_black_24dp"/>
+    <Button android:id="@+id/DoneBtn" android:layout_width="100dp"
+            android:layout_height="50dp" android:layout_below="@+id/IdTE"
+            android:layout_marginLeft="50dp" android:drawableBottom="@drawable/ic_done_black_24dp"/>
+    <Button android:id="@+id/Voice" android:layout_below="@id/photo" android:layout_marginLeft="150dp"
+            android:layout_width="100dp" android:layout_height="50dp"
+            android:drawableBottom="@drawable/ic_keyboard_voice_black_24dp"/>
+
+
+</RelativeLayout>

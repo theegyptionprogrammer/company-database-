@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CompanyDB</string>
+    <string name="add_btn">Add</string>
+    <string name="search_btn">Search</string>
+    <string name="update_btn">Update</string>
+    <string name="sort_btn">Sort</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_position">Position</string>
+    <string name="hint_id">Id</string>
+    <string name="updateitem_btn">Edit</string>
+    <string name="upload_btn">Upload</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+    <TextView android:id="@+id/NameTV" android:layout_width="200dp"
+              android:layout_height="50dp" tools:ignore="LabelFor" android:hint="@string/hint_name"/>
+    <TextView android:id="@+id/AddressTV" android:layout_width="200dp" android:hint="@string/hint_address"
+              android:layout_height="50dp" android:layout_below="@+id/NameTV"/>
+    <TextView android:id="@+id/PositionTV" android:layout_below="@id/AddressTV" android:hint="@string/hint_position"
+              android:layout_width="200dp" android:layout_height="50dp"/>
+    <TextView android:id="@+id/IdTV" android:layout_below="@id/PositionTV" android:hint="@string/hint_id"
+              android:layout_width="200dp" android:layout_height="50dp"/>
+    <Button android:id="@+id/UpdateBtn" android:layout_below="@id/photo"
+            android:layout_width="200dp" android:layout_height="50dp" android:hint="@string/updateitem_btn"/>
+    <Button android:id="@+id/UploadBtn" android:layout_below="@id/photo" android:layout_alignLeft="@id/UpdateBtn"
+            android:layout_width="200dp" android:layout_height="50dp" android:layout_marginLeft="200dp"
+            android:hint="@string/upload_btn"/>
+    <ImageView android:id="@+id/photo" android:layout_width="200dp" android:layout_height="200dp"
+               android:layout_alignParentRight="true" android:defaultFocusHighlightEnabled="true"/>
+</RelativeLayout>
