@@ -12,17 +12,12 @@
     <Button android:id="@+id/SearchBtn" android:layout_row="1" android:layout_column="0"
             android:text="@string/search_btn" android:layout_width="129dp" android:layout_height="75dp"
             android:layout_below="@id/AddBtn"/>
-    <Button android:id="@+id/UpdateBtn" android:layout_row="2" android:layout_column="0"
-            android:layout_height="75dp" android:layout_width="129dp" android:text="@string/update_btn"
+    <Button android:id="@+id/AllUsersBtn" android:layout_row="2" android:layout_column="0"
+            android:layout_height="75dp" android:layout_width="129dp" android:text="@string/all_users_btn"
             android:layout_below="@id/SearchBtn"/>
     <Button android:id="@+id/SortBtn" android:layout_row="3" android:layout_column="0"
             android:text="@string/sort_btn" android:layout_width="129dp" android:layout_height="75dp"
-            android:layout_below="@id/UpdateBtn"/>
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:layout_alignLeft="@id/AddBtn"
-            android:scrollbars="vertical" android:layout_marginLeft="131dp"/>
+            android:layout_below="@id/AllUsersBtn"/>
+
 
 </RelativeLayout>

@@ -10,4 +10,5 @@
     <string name="hint_id">Id</string>
     <string name="updateitem_btn">Edit</string>
     <string name="upload_btn">Upload</string>
+    <string name="all_users_btn">All Users</string>
 </resources>

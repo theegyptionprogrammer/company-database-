@@ -3,10 +3,6 @@ package com.example.companydb
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.LinearLayout
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,22 +15,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        UpdateBtn.setOnClickListener {
-            try {
-                update()
-            } catch (e: Exception) {
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-            }
+        AllUsersBtn.setOnClickListener {
+            val intent = Intent(this, AllEmployeesActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    fun update() {
-        val helper = SqDBHandler(this, null)
-        val customerlist = helper.GetAllEmployees()
-        val adapter = RecyclerViewAdapter(customerlist, this)
-        adapter.additems(customerlist)
-        val rv = findViewById<RecyclerView>(R.id.recyclerView)
-        rv.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        rv.adapter = adapter
-    }
+
 }

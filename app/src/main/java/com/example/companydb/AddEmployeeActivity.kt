@@ -30,7 +30,7 @@ class AddEmployeeActivity : AppCompatActivity() {
             employee.position = PositionTE.text.toString()
             employee.Address = AddressTE.text.toString()
             employee.id = IdTE.text.toString().toDouble()
-            helper.AddEmployee(employee)
+            helper.AddEmployee(employee, helper)
             Toast.makeText(this, "the Employee added", Toast.LENGTH_SHORT).show()
         }
     }
