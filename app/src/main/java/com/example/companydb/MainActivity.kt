@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AllEmployeesActivity::class.java)
             startActivity(intent)
         }
+
+        SearchBtn.setOnClickListener {
+            val intent = Intent(this, SearchEmployeeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
