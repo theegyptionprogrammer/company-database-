@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SearchEmployeeActivity::class.java)
             startActivity(intent)
         }
+
+
     }
 
 

@@ -3,10 +3,14 @@ package com.example.companydb
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
+import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 
 @Suppress("NAME_SHADOWING")
 class SqDBHandler(context: Context, factory: SQLiteDatabase.CursorFactory?) :
@@ -44,23 +48,23 @@ class SqDBHandler(context: Context, factory: SQLiteDatabase.CursorFactory?) :
     var db: SqDBHandler? = null
 
 
-    fun AddEmployee(employee: Employee, handler: SqDBHandler): Boolean {
-        db = handler
-        val dbHandler = db?.writableDatabase
+    fun AddEmployee(employee: Employee){
+
+        val dbHandler = this.writableDatabase
         val values = ContentValues().apply {
-            put(COLUMN_NAME, employee.Name)
-            put(COLUMN_ADDRESS, employee.Address)
+            put(COLUMN_NAME, employee.name)
+            put(COLUMN_ADDRESS, employee.address)
             put(COLUMN_POSITION, employee.position)
             put(COLUMN_ID, employee.id)
         }
         dbHandler?.insert(TABLE_NAME, null, values)
         dbHandler?.close()
-        return true
+
     }
 
     @SuppressLint("Recycle")
-    fun GetAllEmployees(handler: SqDBHandler): ArrayList<String> {
-        val listEmployees = ArrayList<String>()
+    fun GetAllEmployees(handler: SqDBHandler): ArrayList<Employee> {
+        val listEmployees = ArrayList<Employee>()
         db = handler
         val dbHandler = db?.readableDatabase
         val selectQuery = "SELECT * FROM $TABLE_NAME"
@@ -71,9 +75,9 @@ class SqDBHandler(context: Context, factory: SQLiteDatabase.CursorFactory?) :
                     val name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
                     val address = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS))
                     val position = cursor.getString(cursor.getColumnIndex(COLUMN_POSITION))
-                    val id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))).toDouble()
-                    val result = "$name  \n $address \n $position \n $id"
-                    listEmployees.add(result)
+                    val id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID)))
+                    val employee = Employee(name , address , position , id)
+                    listEmployees.add(employee)
                 }
             }
         }
@@ -81,43 +85,31 @@ class SqDBHandler(context: Context, factory: SQLiteDatabase.CursorFactory?) :
         return listEmployees
     }
 
-    fun searchEmployee(id: Int, handler: SqDBHandler): ArrayList<String> {
-        val listEmployees = ArrayList<String>()
-        db = handler
-        val dbHandler = db?.readableDatabase
-        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $id "
-        val cursor = dbHandler?.rawQuery(selectQuery, null)
+    @SuppressLint("Recycle")
+    fun searchEmployee(searchWord : String): ArrayList<Employee>{
+        val ListEmployee = ArrayList<Employee>()
+        val dbHandler = this.readableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_NAME = $searchWord"
+        var cursor = dbHandler!!.rawQuery(selectQuery, null)
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 while (cursor.moveToNext()) {
                     val name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
                     val address = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS))
                     val position = cursor.getString(cursor.getColumnIndex(COLUMN_POSITION))
-                    val id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))).toDouble()
-                    val result = "$name  \n $address \n $position \n $id"
-                    listEmployees.add(result)
+                    val id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID))).toInt()
+                    ListEmployee.add(Employee(name , address , position , id))
+                    cursor.close()
                 }
             }
         }
-        dbHandler?.close()
-        return listEmployees
+        dbHandler.close()
+        return ListEmployee
     }
 
-    fun deleteAllEmployees(): Boolean {
+    fun deleteAllEmployees() {
         val db = this.writableDatabase
-        val result = db.delete(TABLE_NAME, null, null).toLong()
+        db.delete(TABLE_NAME, null, null)
         db.close()
-        return (Integer.parseInt("$result")) != -1
     }
-
-    fun deleteEmployee(employee: Employee): Boolean {
-        val db = this.writableDatabase
-        val id = employee.id
-        val result = db.delete(TABLE_NAME, COLUMN_ID + "=?", arrayOf(id.toString())).toLong()
-        db.close()
-        return Integer.parseInt("$result") != -1
-
-    }
-
-
 }

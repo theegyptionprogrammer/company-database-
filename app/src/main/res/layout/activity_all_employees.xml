@@ -3,10 +3,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-    <Button android:id="@+id/UpdateBtn" android:layout_width="129dp" android:layout_height="67dp"
-            android:layout_marginLeft="140dp"
-            android:text="updload" android:layout_alignBottom="@id/recyclerView" android:layout_marginBottom="-68dp"
-            android:layout_marginStart="130dp"/>
+
+    <Button android:id="@+id/UpdateBtn"       android:layout_width="129dp"      android:layout_height="75dp"
+            android:layout_marginLeft="190dp" android:text="@string/upload_btn" android:layout_below="@id/recyclerView"
+            android:layout_marginStart="190dp"/>
+
+    <Button android:id="@+id/DeleteBtn"             android:layout_width="129dp"     android:layout_height="75dp"
+            android:layout_below="@id/recyclerView" android:text="@string/clear_all" android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"/>
 
     <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
                                             android:id="@+id/recyclerView"
