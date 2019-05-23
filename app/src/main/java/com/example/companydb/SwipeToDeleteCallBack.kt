@@ -12,33 +12,30 @@ abstract
 class SwipeToDeleteCallBack(context : Context) : ItemTouchHelper.SimpleCallback(0 , ItemTouchHelper.LEFT) {
 
     private val deleteIcon = ContextCompat.getDrawable(context , R.drawable.ic_delete_black_24dp)
-    private val intrinsicWidth = deleteIcon.intrinsicWidth
-    private val intrinsicHeight= deleteIcon.intrinsicHeight
+    private val intrinsicWidth = deleteIcon!!.intrinsicWidth
+    private val intrinsicHeight = deleteIcon!!.intrinsicHeight
     private val background = ColorDrawable()
     private val backgroundColor = Color.parseColor("#f44336")
 
-    override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
-        if (viewHolder?.adapterPosition == 10) return 0
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        if (viewHolder.adapterPosition == 10) return 0
         return super.getMovementFlags(recyclerView, viewHolder)
     }
-    override fun onMove(
-        recyclerView: RecyclerView?,
-        viewHolder: RecyclerView.ViewHolder?,
-        target: RecyclerView.ViewHolder?
-    ): Boolean {
+
+    override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
         return false
     }
 
     override fun onChildDraw(
-        c: Canvas?,
-        recyclerView: RecyclerView?,
-        viewHolder: RecyclerView.ViewHolder?,
+        c: Canvas,
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
         dX: Float,
         dY: Float,
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
-        val itemView = viewHolder!!.itemView
+        val itemView = viewHolder.itemView
         val itemHeight = itemView.bottom - itemView.top
 
         background.color = backgroundColor
@@ -51,8 +48,8 @@ class SwipeToDeleteCallBack(context : Context) : ItemTouchHelper.SimpleCallback(
         val deleteIconLeft = itemView.right - deleteIconMargain - intrinsicWidth
         val deleteIconRight = itemView.right - deleteIconMargain
 
-        deleteIcon.setBounds(deleteIconLeft , deleteIconTop , deleteIconRight , deleteIconBottom)
-        deleteIcon.draw(c)
+        deleteIcon?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
+        deleteIcon?.draw(c)
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }

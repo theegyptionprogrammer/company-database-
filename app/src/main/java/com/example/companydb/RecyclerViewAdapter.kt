@@ -7,12 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.SearchView
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_add_employee.view.*
-import kotlinx.android.synthetic.main.employee.view.*
-import org.w3c.dom.Text
-import java.util.prefs.NodeChangeListener
 
 @Suppress("NAME_SHADOWING")
 class
@@ -23,7 +18,7 @@ RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context)
     private var searchEmployeeList : ArrayList<Employee> ?= null
 
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.employee, parent, false))
     }
 
@@ -31,11 +26,11 @@ RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context)
         return employeeList.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder?.TvName?.text = employeeList[position].name
-        holder?.TvAddress?.text = employeeList[position].address
-        holder?.TvPosition?.text = employeeList[position].position
-        holder?.TvId?.text = employeeList[position].id.toString()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.TvName?.text = employeeList[position].name
+        holder.TvAddress?.text = employeeList[position].address
+        holder.TvPosition?.text = employeeList[position].position
+        holder.TvId?.text = employeeList[position].id.toString()
 
     }
 
@@ -63,7 +58,10 @@ RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context)
                 } else {
                     val filteredList = ArrayList<Employee>()
                     for (employee in employeeList) {
-                        if (employee.name.contains(charString) || employee.address.contains(charString) || employee.position.contains(charString)) {
+                        if (employee.name.toLowerCase().contains(charString.toLowerCase())
+                            || employee.address.toLowerCase().contains(charString.toLowerCase())
+                            || employee.position.toLowerCase().contains(charString.toLowerCase())
+                        ) {
                             filteredList.add(employee)
                         }
                             searchEmployeeList = employeeList

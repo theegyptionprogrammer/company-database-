@@ -5,10 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.support.v7.widget.helper.ItemTouchHelper.*
 import android.widget.LinearLayout
-import android.widget.SimpleAdapter
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_all_employees.*
 
 class AllEmployeesActivity : AppCompatActivity() {
@@ -23,6 +20,7 @@ class AllEmployeesActivity : AppCompatActivity() {
         UpdateBtn.performClick()}
 
         val swipeHandler = object : SwipeToDeleteCallBack(this) {
+
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 adapter = recyclerView.adapter as RecyclerViewAdapter
                 adapter!!.removeItem(viewHolder.adapterPosition)
