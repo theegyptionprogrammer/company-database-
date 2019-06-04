@@ -7,18 +7,8 @@
                 android:layout_height="match_parent"
                 tools:context=".SearchEmployeeActivity">
 
-        <SearchView
-                android:id="@+id/search"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:iconifiedByDefault="false">
-
-                <requestFocus />
-        </SearchView>
-
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/myRecycler"
-                android:layout_below="@id/search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical" />

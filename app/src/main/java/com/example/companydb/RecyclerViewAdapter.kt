@@ -15,8 +15,11 @@ RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context)
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() , Filterable {
 
 
-    private var searchEmployeeList : ArrayList<Employee> ?= null
+    internal var searchEmployeeList : ArrayList<Employee>
 
+    init {
+        searchEmployeeList = employeeList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.employee, parent, false))
@@ -31,6 +34,11 @@ RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context)
         holder.TvAddress?.text = employeeList[position].address
         holder.TvPosition?.text = employeeList[position].position
         holder.TvId?.text = employeeList[position].id.toString()
+
+        holder.TvName?.text = searchEmployeeList[position].name
+        holder.TvAddress?.text = searchEmployeeList[position].address
+        holder.TvPosition?.text = searchEmployeeList[position].position
+        holder.TvId?.text = searchEmployeeList[position].id.toString()
 
     }
 
@@ -67,17 +75,22 @@ RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context)
                             searchEmployeeList = employeeList
                     }
                 }
-                val filteredResults = Filter.FilterResults()
+                val filteredResults = FilterResults()
                 filteredResults.values = searchEmployeeList
                 return filteredResults
             }
 
-            override fun publishResults(constraint: CharSequence?, results: Filter.FilterResults?) {
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 searchEmployeeList = results?.values as ArrayList<Employee>
                 notifyDataSetChanged()
             }
         }
     }
+
+    interface ClickListner{
+        fun onClickListner(employee: Employee)
+    }
+
     }
 
 

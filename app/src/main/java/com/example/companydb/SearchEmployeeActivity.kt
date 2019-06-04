@@ -4,21 +4,25 @@ import android.app.DownloadManager
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Filter
 import android.widget.LinearLayout
 import android.widget.SearchView
 
 
-class SearchEmployeeActivity : AppCompatActivity(){
+class SearchEmployeeActivity : AppCompatActivity() , RecyclerViewAdapter.ClickListner{
 
     private var adapter : RecyclerViewAdapter ?= null
     private var searchView : SearchView ?= null
+    private var mainLayout: View? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_employee)
@@ -50,12 +54,17 @@ class SearchEmployeeActivity : AppCompatActivity(){
                 return false
             }
         })
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item?.itemId
         return if (id == R.id.action_search) {
             true
-        } else super.onOptionsItemSelected(item)    }
+        } else super.onOptionsItemSelected(item)
+    }
+
+    override fun onClickListner(employee: Employee){
+        Snackbar.make(mainLayout!!, "You Clicked: " + employee.name + ", position: " + employee.position + ", address " + employee.address + " , id" + employee.id , Snackbar.LENGTH_LONG).show()
+    }
 }
