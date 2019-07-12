@@ -4,10 +4,10 @@ technologies which i use is : sqlite database , recyclerview as a list to show e
 
 what is sqlite and recyclerview?
 
-SQLITE database 
+
 SQLite is a relational database management system contained in a C library. In contrast to many other database management systems, SQLite is not a client–server database engine. Rather, it is embedded into the end program.
 
-RecyclerView 
+
 RecyclerView is flexible and efficient version of ListView. It is an container for rendering larger data set of views that can be recycled and scrolled very efficiently. RecyclerView is like traditional ListView widget, but with more flexibility to customizes and optimized to work with larger datasets. It uses a subclass of RecyclerView.Adapter for providing views that represent items in a data set.
 
 first step in our project is to build data model , i want to build a database for a company so my module will be a Employee
@@ -31,10 +31,9 @@ class Employee {
  
  second step i am going to build adapter for my recyclerview 
  
- class
-RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context) :
+ class RecyclerViewAdapter(val employeeList: ArrayList<Employee>, val context: Context) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() , Filterable {
-  
+    
     internal var searchEmployeeList : ArrayList<Employee>
 
     init {
